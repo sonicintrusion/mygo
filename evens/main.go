@@ -19,8 +19,8 @@ func main() {
 		if value%2 != 0 {
 			oddeven = "odd"
 		}
-		fmt.Print(value)
-		fmt.Println(" is", oddeven)
+		//		fmt.Print(value)
+		fmt.Println(value, "is", oddeven)
 	}
 
 }
