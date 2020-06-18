@@ -22,6 +22,7 @@ func main() {
 	}
 
 	for l := range c {
+		// this time we pass the value in so it gets copied to it's own address
 		go func(link string) {
 			time.Sleep(5 * time.Second)
 			checkLink(link, c)
