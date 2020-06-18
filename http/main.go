@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+type logWriter struct{}
+
 func main() {
 	fmt.Println("Begin")
 
@@ -16,8 +18,16 @@ func main() {
 		os.Exit(1)
 	}
 
-	// io.Copy (writer, reader) interface
-	io.Copy(os.Stdout, resp.Body) // Copy reads from resp and writes to Stdout
+	lw := logWriter{}
+
+	io.Copy(lw, resp.Body)
 
 	fmt.Println("End")
+}
+
+// we write a function that meets the definition of the Write interface
+func (logWriter) Write(bs []byte) (int, error) {
+	fmt.Println(string(bs))
+	fmt.Println("Just wrote this many bytes:", len(bs))
+	return len(bs), nil
 }
